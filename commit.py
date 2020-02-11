@@ -8,7 +8,7 @@ TEXT_VECTOR_SIZE = 31
 
 
 class Commit:
-	_LABEL_TO_ID = {"p": 0, "c": 1, "a": 2}
+	_LABEL_TO_ID = {"a": 0, "c": 1, "p": 2}
 	_PROJECT_TO_ID = {"reactivex-rxjava": 0, "hbase": 1, "elasticsearch": 2,
 					  "intellij-community": 3, "hadoop": 4, "drools": 5,
 					  "kotlin": 6, "restlet-framework-java": 7,
