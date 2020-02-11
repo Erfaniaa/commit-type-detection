@@ -50,12 +50,11 @@ class Network(nn.Module):
         x = self.fc5(x)
         x = torch.tanh(x)
         return x
- 
 ```
 
 As you can read, a fully-connected neural network has been implemented in **PyTorch** deep learning framework.
 
-In our dataset, each commit has a message, project name, and 68 other features. By applying **tf idf** algorithm on the commit messages, we may convert each commit data to a vector with size 100. So, the input of this network is a vector with a size equal to 100.
+In our dataset, each commit has a message, project name, and 68 other features. By applying **tf-idf** algorithm on the commit messages, we may convert each commit data to a vector with size 100. So, the input of this network is a vector with a size equal to 100.
 
 Like the paper method, our models were trained using 85% of the dataset, while the remaining 15% was used as a test set.
 
