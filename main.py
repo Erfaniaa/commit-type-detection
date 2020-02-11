@@ -7,11 +7,12 @@ import pandas as pd
 from commit import Commit
 import random
 import network
+from pycm import ConfusionMatrix
 
 
 CSV_FILENAME = "dataset.csv"
 CSV_FILE_DELIMITER = "#"
-EPOCHS_COUNT = 500
+EPOCHS_COUNT = 100
 BATCH_SIZE = 1
 TRAINING_DATASET_SIZE_RATIO = 0.85
 LEARNING_RATE = 0.00005
@@ -64,44 +65,27 @@ def initialize_network():
 
 
 def validate():
+	global input_labels
+	global predicted_labels
+	input_labels = []
+	predicted_labels = []
 	model.eval()
-	result_table = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
-	true_positives_count = [0, 0, 0]
 	total_true_positives = 0
-	nir_true_positives = 0
-	actual_count = [0, 0, 0]
-	classified_count = [0, 0, 0]
-	precision = [0, 0, 0]
-	recall = [0, 0, 0]
 	with torch.no_grad():
 		for j in range(validation_dataset_size):
 			network_output = model(validation_dataset[j].get_all_features_tensor().to(device))
 			network_output_index = int(network_output.argmax(dim=0, keepdim=False))
-			result_table[validation_dataset[j].get_label()][network_output_index] += 1
-			actual_count[validation_dataset[j].get_label()] += 1
-			classified_count[network_output_index] += 1
 			if network_output_index == validation_dataset[j].get_label():
-				true_positives_count[validation_dataset[j].get_label()] += 1
 				total_true_positives += 1
-			if 1 == validation_dataset[j].get_label():
-				nir_true_positives += 1
-	for i in range(3):
-		if actual_count[i] == 0:
-			recall[i] = "inf"
-		else:
-			recall[i] = true_positives_count[i] / actual_count[i]
-		if classified_count[i] == 0:
-			precision[i] = "inf"
-		else:
-			precision[i] = true_positives_count[i] / classified_count[i]
+			input_labels.append(validation_dataset[j].get_label())
+			predicted_labels.append(network_output_index)
 	accuracy = total_true_positives / validation_dataset_size
-	nir = nir_true_positives / validation_dataset_size
-	print("Result Table:")
-	print(result_table)
-	print("Recall:", recall)
-	print("Precision:", precision)
 	print("Accuracy:", accuracy)
-	print("No Information Rate:", nir)
+
+
+def print_confusion_matrix(input_labels, predicted_labels):
+	cm = ConfusionMatrix(input_labels, predicted_labels)
+	print(cm)
 
 
 def train_all(epochs_count=EPOCHS_COUNT, batch_size=BATCH_SIZE):
@@ -127,3 +111,4 @@ if __name__ == "__main__":
 	read_commits_data_from_csv()
 	prepare_training_and_validation_datasets()
 	train_all()
+	print_confusion_matrix()
