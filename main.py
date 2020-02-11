@@ -12,7 +12,7 @@ from pycm import ConfusionMatrix
 
 CSV_FILENAME = "dataset.csv"
 CSV_FILE_DELIMITER = "#"
-EPOCHS_COUNT = 100
+EPOCHS_COUNT = 40
 BATCH_SIZE = 1
 TRAINING_DATASET_SIZE_RATIO = 0.85
 LEARNING_RATE = 0.00005
@@ -111,4 +111,4 @@ if __name__ == "__main__":
 	read_commits_data_from_csv()
 	prepare_training_and_validation_datasets()
 	train_all()
-	print_confusion_matrix()
+	print_confusion_matrix(input_labels, predicted_labels)

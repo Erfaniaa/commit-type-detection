@@ -9,12 +9,9 @@ NETWORK_OUTPUT_SIZE = 3
 class Network(nn.Module):
 	def __init__(self, input_size=NETWORK_INPUT_SIZE, output_size=NETWORK_OUTPUT_SIZE):
 		super(Network, self).__init__()
-
 		self.fc1 = nn.Linear(input_size, 80)
 		self.fc2 = nn.Linear(80, 60)
-		
 		self.dropout1 = nn.Dropout(0.01)
-
 		self.fc3 = nn.Linear(60, 40)
 		self.fc4 = nn.Linear(40, 20)
 		self.fc5 = nn.Linear(20, output_size)
