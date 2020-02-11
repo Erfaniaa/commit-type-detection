@@ -73,9 +73,6 @@ def validate():
 			network_output_index = int(network_output.argmax(dim=0, keepdim=False))
 			if network_output_index == validation_dataset[j].get_label():
 				true_positives += 1
-			# loss_value = network.loss(network_output, validation_dataset[j].get_labels_tensor().to(device))
-			# validation_loss += loss_value.item()
-		# validation_loss /= validation_dataset_size
 		validation_loss = true_positives / validation_dataset_size
 		print("Corrects:", validation_loss)
 

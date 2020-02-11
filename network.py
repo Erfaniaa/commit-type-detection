@@ -13,8 +13,7 @@ class Network(nn.Module):
 		self.fc1 = nn.Linear(input_size, 80)
 		self.fc2 = nn.Linear(80, 60)
 		
-		self.dropout1 = nn.Dropout(0.25)
-		self.dropout2 = nn.Dropout(0.5)
+		self.dropout1 = nn.Dropout(0.01)
 
 		self.fc3 = nn.Linear(60, 40)
 		self.fc4 = nn.Linear(40, 20)
@@ -34,7 +33,7 @@ class Network(nn.Module):
 		x = F.relu(x)
 		x = self.dropout1(x)
 		x = self.fc5(x)
-		x = torch.sigmoid(x)
+		x = torch.tanh(x)
 		return x
 
 

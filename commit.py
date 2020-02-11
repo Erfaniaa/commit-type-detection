@@ -37,9 +37,7 @@ class Commit:
 		return self._PROJECT_TO_ID[self.project.lower()]
 
 	def get_all_features_list(self):
-		tmp = [self.get_project()] + self.other_features
-		tmp = [x / 1.0 for x in tmp]
-		return self.get_message_vector() + tmp
+		return self.get_message_vector() + [self.get_project()] + self.other_features
 
 	def get_all_features_tensor(self):
 		return torch.tensor(self.get_all_features_list())
@@ -48,13 +46,13 @@ class Commit:
 		return self._LABEL_TO_ID[self.label]
 
 	def get_labels_tensor(self):
-		labels_list = [0, 0, 0]
+		labels_list = [-1, -1, -1]
 		labels_list[self.get_label()] = 1
 		labels_tensor = torch.tensor(labels_list)
 		return labels_tensor
 
 	def get_labels_list(self):
-		labels_list = [0, 0, 0]
+		labels_list = [-1, -1, -1]
 		labels_list[self.get_label()] = 1
 		return labels_list
 
