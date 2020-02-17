@@ -4,9 +4,7 @@ Classify Git commits with deep learning
 
 # Introduction
 
-According to [this](https://arxiv.org/pdf/1711.05340.pdf) paper:
-
-We suppose that there are 3 main classification categories for software project maintenance activities:
+According to [this](https://arxiv.org/pdf/1711.05340.pdf) paper, we suppose that there are 3 main classification categories for software project maintenance activities:
 
 **Corrective**: fixing faults (functional and non-functional)
 
