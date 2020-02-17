@@ -1,9 +1,10 @@
 # Commit Type Detection
+
 Classify Git commits with deep learning
 
 # Introduction
 
-According to this (https://arxiv.org/pdf/1711.05340.pdf) paper:
+According to [this](https://arxiv.org/pdf/1711.05340.pdf) paper:
 
 We suppose that there are 3 main classification categories for software project maintenance activities:
 
@@ -15,7 +16,7 @@ We suppose that there are 3 main classification categories for software project 
 
 In this work, we seek to design a commit classification model capable of providing high accuracy to detect these three types of commits.
 
-The used dataset can be found here: https://zenodo.org/record/835534
+The used dataset can be found [here](https://zenodo.org/record/835534).
 
 # Method
 
@@ -62,7 +63,6 @@ Like the paper method, our models were trained using 85% of the dataset, while t
 
 A confusion matrix will be shown after training. You can compare this data to the 8th table of the mentioned paper. As you can see, our method has reached **74.5% accuracy** in this case.
 
-
 ```
 Predict  a        c        p        
 Actual
@@ -96,6 +96,7 @@ TNR(Specificity or true negative rate)                     0.94366     0.77273  
 TP(True positive/hit)                                      17          74          38
 TPR(Sensitivity, recall, hit rate, or true positive rate)  0.54839     0.87059     0.66667
 ```
+
 # Usage
 
 Use Python version 3.
@@ -111,4 +112,3 @@ And then run the Python program:
 ```
 python main.py
 ```
-
